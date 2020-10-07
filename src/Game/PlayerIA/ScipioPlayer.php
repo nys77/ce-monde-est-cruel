@@ -7,7 +7,7 @@ use Hackathon\Game\Result;
 /**
  * Class ScipioPlayers
  * @package Hackathon\PlayerIA
- * @author YOUR NAME HERE
+ * @author NYS Nicolas
  */
 class ScipioPlayer extends Player
 {
@@ -42,7 +42,7 @@ class ScipioPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
 
 
-        return parent::rockChoice();
+        return parent::scissorsChoice();
 
     }
 };

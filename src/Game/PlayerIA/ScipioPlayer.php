@@ -21,6 +21,7 @@ class ScipioPlayer extends Player
     protected $nbCissor;
     protected $nbPaper;
     protected $nbRock;
+    protected $nbRound;
 
     public function getPaperOposite(){
         if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
@@ -46,12 +47,14 @@ class ScipioPlayer extends Player
         $this->getCissorOposite();
         $this->getRockOposite();
         $this->getPaperOposite();
+        $this->nbRound += 1;
         if ($this->result->getNbRound() == 0) {
             $this->nbRock= 0;
             $this->nbPaper= 0;
             $this->nbCissor = 0;
+            $this->nbRound = 0;
         }
-        if ($this->score < 60) {
+        if ($this->score < 60 || $this->nbRound < 20) {
             if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
                 if ($this->lastChoice != "rock") {
                     $this->lastChoice = "rock";

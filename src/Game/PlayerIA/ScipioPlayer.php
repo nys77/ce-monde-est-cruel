@@ -19,29 +19,19 @@ class ScipioPlayer extends Player
 
     public function getChoice()
     {
-        if ($this->result->getLastChoiceFor($this->mySide) == 0) {
-            if ($this->result->getLastScoreFor($this->mySide) == 0) {
-                $lastChoice = "rock";
-                return parent::rockChoice();
-            }
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
+            $lastChoice = "rock";
+            return parent::rockChoice();
         }
-        $stat = $this->result->getStatsFor($this->opponentSide);
-        if ($this->result->getStatsFor($this->mySide) < 20) {
-            if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
-                $lastChoice = "rock";
-                return parent::rockChoice();
-            }
-            if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
-                $lastChoice = "scissors";
-                return parent::scissorsChoice();
-            }
-            if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
-                $lastChoice = "paper";
-                return parent::paperChoice();
-            }
-        } else {
-            
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
+            $lastChoice = "scissors";
+            return parent::scissorsChoice();
         }
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+            $lastChoice = "paper";
+            return parent::paperChoice();
+        }
+        
 
         
 

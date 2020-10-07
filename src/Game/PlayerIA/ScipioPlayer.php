@@ -54,7 +54,7 @@ class ScipioPlayer extends Player
             $this->nbCissor = 0;
             $this->nbRound = 0;
         }
-        if ($this->score < 100 || $this->nbRound < 40) {
+        if ($this->score < 100 || $this->nbRound < 50) {
             if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
                 if ($this->lastChoice != "paper") {
                     $this->lastChoice = "paper";

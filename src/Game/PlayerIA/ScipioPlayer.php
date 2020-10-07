@@ -25,18 +25,26 @@ class ScipioPlayer extends Player
                 return parent::rockChoice();
             }
         }
-        if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
-            $lastChoice = "scissors";
-            return parent::scissorsChoice();
+        $stat = $this->result->getStatsFor($this->opponentSide);
+        if ($this->result->getStatsFor($this->mySide) < 20) {
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
+                $lastChoice = "rock";
+                return parent::rockChoice();
+            }
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
+                $lastChoice = "scissors";
+                return parent::scissorsChoice();
+            }
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+                $lastChoice = "paper";
+                return parent::paperChoice();
+            }
+        } else {
+            
         }
-        if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
-            $lastChoice = "paper";
-            return parent::paperChoice();
-        }
-        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
-            $lastChoice = "rock";
-            return parent::rockChoice();
-        }
+
+        
+
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)

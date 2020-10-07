@@ -19,16 +19,16 @@ class ScipioPlayer extends Player
 
     public function getChoice()
     {
-        if ($this->result->getLastChoiceFor($this->opponentSide) != 0 && $this->result->getLastChoiceFor($this->opponentSide) == parent::scissorsChoice()) {
-            $lastChoice = parent::scissorsChoice();
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
+            $lastChoice = "scissors";
             return parent::scissorsChoice();
         }
-        if ($this->result->getLastChoiceFor($this->opponentSide) != 0 && $this->result->getLastChoiceFor($this->opponentSide) == parent::paperChoice()) {
-            $lastChoice = parent::paperChoice();
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
+            $lastChoice = "paper";
             return parent::paperChoice();
         }
-        if ($this->result->getLastChoiceFor($this->opponentSide) != 0 && $this->result->getLastChoiceFor($this->opponentSide) == parent::rockChoice()) {
-            $lastChoice = parent::rockChoice();
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+            $lastChoice = "rock";
             return parent::rockChoice();
         }
         // -------------------------------------    -----------------------------------------------------
@@ -54,7 +54,7 @@ class ScipioPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
-        $lastChoice = parent::scissorsChoice();
+        $lastChoice = "scissors";
         return parent::scissorsChoice();
     }
 };

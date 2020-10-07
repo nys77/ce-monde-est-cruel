@@ -8,6 +8,7 @@ use Hackathon\Game\Result;
  * Class ScipioPlayers
  * @package Hackathon\PlayerIA
  * @author NYS Nicolas
+ * J'ai voulu pendant les 20 
  */
 class ScipioPlayer extends Player
 {
@@ -54,7 +55,7 @@ class ScipioPlayer extends Player
             $this->nbCissor = 0;
             $this->nbRound = 0;
         }
-        if ($this->score < 100 || $this->nbRound < 50) {
+        if ($this->score < 100 || $this->nbRound < 20) {
             if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
                     $this->lastChoice = "scissors";
                     return parent::scissorsChoice();

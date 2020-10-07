@@ -53,34 +53,48 @@ class ScipioPlayer extends Player
         }
         if ($this->score < 60) {
             if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
-                $this->lastChoice = "rock";
-                return parent::rockChoice();
+                if ($this->lastChoice != "rock") {
+                    $this->lastChoice = "rock";
+                    return parent::rockChoice();
+                }
             }
             if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
-                $this->getRockOpositelastChoice = "scissors";
-                return parent::scissorsChoice();
+                if ($this->lastChoice != "scissors") {
+                    $this->getRockOpositelastChoice = "scissors";
+                    return parent::scissorsChoice();
+                }
             }
             if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
-                $this->lastChoice = "paper";
-                return parent::paperChoice();
+                if ($this->lastChoice != "paper") {
+                    $this->lastChoice = "paper";
+                    return parent::paperChoice();
+                }
             }
         }
         else {
             if ($this->nbCissor > $this->nbRock && $this->nbCissor > $this->nbPaper) {
-                $this->lastChoice = "rock";
-                return parent::rockChoice();
+                if ($this->lastChoice != "rock") {
+                    $this->lastChoice = "rock";
+                    return parent::rockChoice();
+                }
             }
             if ($this->nbRock> $this->nbCissor && $this->nbRock > $this->nbPaper) {
-                $this->lastChoice = "paper";
-                return parent::paperChoice();
+                if ($this->lastChoice != "paper") {
+                    $this->lastChoice = "paper";
+                    return parent::paperChoice();
+                }
             }
             if ($this->nbPaper > $this->nbCissor && $this->nbPaper > $this->nbRock) {
-                $this->lastChoice = "paper";
-                return parent::paperChoice();
+                if ($this->lastChoice != "cissor") {
+                    $this->lastChoice = "cissor";
+                    return parent::scissorsChoice();
+                }
             }
             else {
-                $this->lastChoice = "paper";
-                return parent::paperChoice();
+                if ($this->lastChoice != "paper") {
+                    $this->lastChoice = "paper";
+                    return parent::paperChoice();
+                }
             }
         }
         // -------------------------------------    -----------------------------------------------------

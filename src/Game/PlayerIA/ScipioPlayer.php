@@ -20,7 +20,10 @@ class ScipioPlayer extends Player
     public function getChoice()
     {
         if ($this->result->getLastChoiceFor($this->mySide) == 0) {
-
+            if ($this->result->getLastScoreFor($this->mySide) == 0) {
+                $lastChoice = "rock";
+                return parent::rockChoice();
+            }
         }
         if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
             $lastChoice = "scissors";

@@ -15,15 +15,20 @@ class ScipioPlayer extends Player
     protected $opponentSide;
     protected $result;
 
+    protected $lastChoice;
+
     public function getChoice()
     {
         if ($this->result->getLastChoiceFor($this->opponentSide) != 0 && $this->result->getLastChoiceFor($this->opponentSide) == parent::scissorsChoice()) {
+            $lastChoice = parent::scissorsChoice();
             return parent::scissorsChoice();
         }
         if ($this->result->getLastChoiceFor($this->opponentSide) != 0 && $this->result->getLastChoiceFor($this->opponentSide) == parent::paperChoice()) {
+            $lastChoice = parent::paperChoice();
             return parent::paperChoice();
         }
         if ($this->result->getLastChoiceFor($this->opponentSide) != 0 && $this->result->getLastChoiceFor($this->opponentSide) == parent::rockChoice()) {
+            $lastChoice = parent::rockChoice();
             return parent::rockChoice();
         }
         // -------------------------------------    -----------------------------------------------------
@@ -49,9 +54,7 @@ class ScipioPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
-
-
+        $lastChoice = parent::scissorsChoice();
         return parent::scissorsChoice();
-
     }
 };

@@ -16,25 +16,73 @@ class ScipioPlayer extends Player
     protected $result;
 
     protected $lastChoice;
+    protected $score;
+
+    protected $nbCissor;
+    protected $nbPaper;
+    protected $nbRock;
+
+    public function getPaperOposite(){
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
+                $this->nbPaper++;
+        }
+    }
+
+    public function getRockOposite(){
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+            $this->nbRock++;
+        }             
+    }
+
+    public function getCissorOposite(){
+        if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
+                $this->nbCissor++;
+        }
+    }
 
     public function getChoice()
     {
-        if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
-            $lastChoice = "rock";
-            return parent::rockChoice();
+        $this->score = $this->score + $this->result->getLastScoreFor($this->mySide);
+        $this->getCissorOposite();
+        $this->getRockOposite();
+        $this->getPaperOposite();
+        if ($this->result->getNbRound() == 0) {
+            $this->nbRock= 0;
+            $this->nbPaper= 0;
+            $this->nbCissor = 0;
         }
-        if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
-            $lastChoice = "scissors";
-            return parent::scissorsChoice();
+        if ($this->score < 20) {
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
+                $this->lastChoice = "rock";
+                return parent::rockChoice();
+            }
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
+                $this->getRockOpositelastChoice = "scissors";
+                return parent::scissorsChoice();
+            }
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+                $this->lastChoice = "paper";
+                return parent::paperChoice();
+            }
         }
-        if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
-            $lastChoice = "paper";
-            return parent::paperChoice();
+        else {
+            if ($this->nbCissor > $this->nbRock && $this->nbCissor > $this->nbPaper) {
+                $this->lastChoice = "rock";
+                return parent::rockChoice();
+            }
+            if ($this->nbRock> $this->nbCissor && $this->nbRock > $this->nbPaper) {
+                $this->lastChoice = "paper";
+                return parent::paperChoice();
+            }
+            if ($this->nbPaper > $this->nbCissor && $this->nbPaper > $this->nbRock) {
+                $this->lastChoice = "paper";
+                return parent::paperChoice();
+            }
+            else {
+                $this->lastChoice = "paper";
+                return parent::paperChoice();
+            }
         }
-        
-
-        
-
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)

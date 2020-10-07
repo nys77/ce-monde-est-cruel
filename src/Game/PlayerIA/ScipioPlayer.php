@@ -54,23 +54,23 @@ class ScipioPlayer extends Player
             $this->nbCissor = 0;
             $this->nbRound = 0;
         }
-        if ($this->score < 60 || $this->nbRound < 20) {
+        if ($this->score < 100 || $this->nbRound < 40) {
             if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
-                if ($this->lastChoice != "scissors") {
-                    $this->lastChoice = "scissors";
-                    return parent::scissorsChoice();
-                }
-            }
-            if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
                 if ($this->lastChoice != "paper") {
-                    $this->getRockOpositelastChoice = "paper";
+                    $this->lastChoice = "paper";
                     return parent::paperChoice();
                 }
             }
-            if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
                 if ($this->lastChoice != "rock") {
-                    $this->lastChoice = "rock";
+                    $this->getRockOpositelastChoice = "rock";
                     return parent::rockChoice();
+                }
+            }
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+                if ($this->lastChoice != "scissors") {
+                    $this->lastChoice = "scissors";
+                    return parent::scissorsChoice();
                 }
             }
         }

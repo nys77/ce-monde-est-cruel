@@ -8,7 +8,8 @@ use Hackathon\Game\Result;
  * Class ScipioPlayers
  * @package Hackathon\PlayerIA
  * @author NYS Nicolas
- * J'ai voulu pendant les 20 
+ * J'ai voulu pendant les 20 premier round jouer la meme chose que jouer mon adversaire avant
+ * Apres je fais des stats en comptent le nombre de ciseaux, pierre, papier jouer par mon adversaire et je joue l'opposer
  */
 class ScipioPlayer extends Player
 {
@@ -57,16 +58,16 @@ class ScipioPlayer extends Player
         }
         if ($this->score < 100 || $this->nbRound < 20) {
             if ($this->result->getLastChoiceFor($this->opponentSide) == "scissors") {
-                    $this->lastChoice = "scissors";
-                    return parent::scissorsChoice();
-            }
-            if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
-                    $this->getRockOpositelastChoice = "paper";
-                    return parent::paperChoice();
-            }
-            if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
                     $this->lastChoice = "rock";
                     return parent::rockChoice();
+            }
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "paper") {
+                    $this->getRockOpositelastChoice = "scissors";
+                    return parent::scissorsChoice();
+            }
+            if ($this->result->getLastChoiceFor($this->opponentSide) == "rock") {
+                    $this->lastChoice = "paper";
+                    return parent::paperChoice();
             }
         }
         else {
